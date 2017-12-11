@@ -93,6 +93,7 @@ $(document).ready(() => {
     });
 
     //When I click on Animal name button:    
+    //This piece is not working with the usual jQuery Click $(".animal-name").on("click", function () {});
     $(document).on("click", ".animal-name", function () {
         //First, we empty all other animals
         $("#animals").empty();
