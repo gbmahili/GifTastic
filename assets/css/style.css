@@ -15,6 +15,7 @@
   -moz-transition: all 300ms;
   transition: all 300ms;
   background: #3D9970;
+  cursor: pointer;
 }
 
 .animal-name:hover{

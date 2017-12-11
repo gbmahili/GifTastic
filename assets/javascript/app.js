@@ -52,8 +52,6 @@ $(document).ready(() => {
 
         //Show gifs when abutton is clicked
         showGifs : function()  {
-            
-            console.log(animalQuery);
             //get a list of all the gifs
             var apiKey = "HKDCUnDebWZ1eBybt5aIopjO8RPrmK78";
             var gifURL = "https://api.giphy.com/v1/gifs/search?q=" + animalQuery + "&api_key=" + apiKey +"&limit=10";
@@ -88,11 +86,9 @@ $(document).ready(() => {
         //First, we empty the buttons div:
         $("#animals-buttons").empty();
         //Then call the addAnimal() method to add it to the list
-        gbmGifs.addAnimal();
-        
+        gbmGifs.addAnimal();        
         //Empty the input field:
         $("#add-animal").val("");
-        console.log("Clicked Add Animal Button");
 
     });
 
@@ -103,8 +99,18 @@ $(document).ready(() => {
         //Get the animalName being searched:        
         animalQuery = $(this).attr("data");
         //Then call the showGifs() method
-        gbmGifs.showGifs();
-        
+        gbmGifs.showGifs();        
     });
+
+    // Why isn't this code working??
+
+    // $(".animal-name").on("click", function () {
+    //     //First, we empty all other animals
+    //     $("#animals").empty();
+    //     //Get the animalName being searched:        
+    //     animalQuery = $(this).attr("data");
+    //     //Then call the showGifs() method
+    //     gbmGifs.showGifs();
+    // });
 
 });
