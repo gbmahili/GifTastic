@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>GBMahili GifTastic</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- My CSS -->
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+
+<body>
+
+   
+    <div class="container">
+
+        <div class="text-center">
+            <h1>GBMahili GifTastic</h1>
+            <p class="lead">Click the button to generate GIFS</p>
+        </div>
+
+        <!-- Animals Buttons -->
+        <div class="row  buttonsDiv">
+            <div class="col-md-10">
+                <div id="animals-buttons">
+                    <!-- Button will be populated here -->
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label for="add-animal">Add Animal</label>
+                    <input type="text" name="add-animal" id="add-animal" class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="button" value="Add Animal" class="btn btn-success add-animal btn-block">
+                </div>               
+                
+            </div>
+        </div>
+
+        <div class="row animalDiv">
+            <div class="col-md-12">
+                <div id="animals">
+                    <!-- Animals gifs will be populated here -->
+                </div>
+            </div>
+        </div>
+        
+
+    </div>
+    <!-- /.container -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+    <script src="./assets/javascript/app.js"></script>
+</body>
+
+</html>
