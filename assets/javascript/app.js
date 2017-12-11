@@ -31,14 +31,13 @@ $(document).ready(() => {
             newAnimal = newAnimal.toUpperCase().trim();
             //Check if a user entered something:
             if (!newAnimal){
-                //alert("Enter Animal Text");
+                alert("Enter Animal Text");
                 gbmGifs.populateAnimalButtons();
             }else{              
                 //check if that already exist in the array: if it already exisit, the index will not be -1
                 if (gbmGifs.buttonsArray.indexOf(newAnimal) == -1) {
                     //If it doesn't exisit in the array, then push it
                     gbmGifs.buttonsArray.push(newAnimal);
-                    $("span").css("color", "red");
                 }else{
                     //Change the color of the button the user is trying to add again...
                     //TODO:
@@ -90,25 +89,22 @@ $(document).ready(() => {
         $("#animals-buttons").empty();
         //Then call the addAnimal() method to add it to the list
         gbmGifs.addAnimal();
+        
         //Empty the input field:
         $("#add-animal").val("");
+        console.log("Clicked Add Animal Button");
 
     });
 
-    //When I click on Animal name button:
-    $(".animal-name").click( function()  {
+    //When I click on Animal name button:    
+    $(document).on("click", ".animal-name", function () {
         //First, we empty all other animals
         $("#animals").empty();
         //Get the animalName being searched:        
-        animalQuery = $(this).attr("data");  
-        //alert("hi");
+        animalQuery = $(this).attr("data");
+        //Then call the showGifs() method
         gbmGifs.showGifs();
-
+        
     });
-    //document.getElementsByTagName('span').addEventListener('click', doSomething, false);
-    
-    
-
-
 
 });
