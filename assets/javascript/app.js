@@ -68,7 +68,10 @@ $(document).ready(() => {
                     var imageTag = $("<img width='400' height='250'>");
                     imageTag.attr("src", animalImage).attr("alt", animalQuery);
                     //imageTag.attr("src", animalImage);
+                    $("#animals").append(`<span>Rating: ${response.data[i].rating.toUpperCase()}</span>`);
+                    //$("#animals").append(`<div class="col-md-6">${imageTag}</div>`);
                     $("#animals").append(imageTag);
+
                     
                 }
             });
