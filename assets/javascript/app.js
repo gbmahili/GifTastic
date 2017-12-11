@@ -24,15 +24,14 @@ $(document).ready(() => {
         },
 
         //When a user clicks the 'Add Animal', they should push what is added to the array
-        addAnimal : () => {
+        addAnimal : function()  {
             //Get the value from the input
             var newAnimal = $("#add-animal").val();
-            console.log(newAnimal);
             //Remove any white spaces and change to upperCase:
             newAnimal = newAnimal.toUpperCase().trim();
             //Check if a user entered something:
             if (!newAnimal){
-                alert("Enter Animal Text");
+                //alert("Enter Animal Text");
                 gbmGifs.populateAnimalButtons();
             }else{              
                 //check if that already exist in the array: if it already exisit, the index will not be -1
@@ -53,25 +52,57 @@ $(document).ready(() => {
         },
 
         //Show gifs when abutton is clicked
-        showGifs : () => {
+        showGifs : function()  {
+            
+            console.log(animalQuery);
             //get a list of all the gifs
-            var gifURL = "";
+            var apiKey = "HKDCUnDebWZ1eBybt5aIopjO8RPrmK78";
+            var gifURL = "https://api.giphy.com/v1/gifs/search?q=" + animalQuery + "&api_key=" + apiKey +"&limit=10";
+
+            $.ajax({
+                url: gifURL,
+                method: "GET"
+            }).done(function(response){
+                for (let i = 0; i < response.data.length; i++) {
+                    var animalImage = response.data[i].images.original.url;
+                    var imageTag = $("<img width='400' height='250'>");
+                    imageTag.attr("src", animalImage).attr("alt", animalQuery);
+                    //imageTag.attr("src", animalImage);
+                    $("#animals").append(imageTag);
+                    
+                }
+            });
         }
 
-    }
+    };//End of Object
+
+
     //Call the populateAnimalButtons on page load
     gbmGifs.populateAnimalButtons();
 
     //Call the addAnimal method on button click:
-    $(".add-animal-button").click(()=>{        
+    $(".add-animal-button").click(function (e){
+        e.preventDefault();        
         //First, we empty the buttons div:
         $("#animals-buttons").empty();
         //Then call the addAnimal() method to add it to the list
         gbmGifs.addAnimal();
         //Empty the input field:
-        $("#add-animal").text("");
+        $("#add-animal").val("");
 
     });
+
+    //When I click on Animal name button:
+    $(".animal-name").click( function()  {
+        //First, we empty all other animals
+        $("#animals").empty();
+        //Get the animalName being searched:        
+        animalQuery = $(this).attr("data");  
+        //alert("hi");
+        gbmGifs.showGifs();
+
+    });
+    //document.getElementsByTagName('span').addEventListener('click', doSomething, false);
     
     
 
