@@ -2,9 +2,9 @@
     border: 1px solid #AAA;
 }
 
-.animal-button, .add-animal-button{
+.animal-name, .add-animal-button{
   display: inline-block;
-  margin: 15px 10px;
+  margin: 10px;
   text-decoration: none;
   font-size: 18px;
   color: white;
@@ -17,7 +17,7 @@
   background: #3D9970;
 }
 
-.animal-button:hover{
+.animal-name:hover{
     box-shadow: 0px 0px 0px 2px white, 0px 0px 0px 4px #3D9970;
     cursor: pointer;
 }
