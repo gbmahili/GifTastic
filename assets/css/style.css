@@ -38,3 +38,18 @@
 img{
     margin: 10px;    
 }
+
+.rating{
+    background: skyblue;
+    color: white;
+    padding: 5px;
+}
+
+#animals{
+    margin-top: 10px;
+}
+
+.imgDiv{
+    border: 1px solid #AAA;
+    margin: 5px;
+}

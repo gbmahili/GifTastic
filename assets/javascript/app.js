@@ -54,22 +54,29 @@ $(document).ready(() => {
         showGifs : function()  {
             //get a list of all the gifs
             var apiKey = "HKDCUnDebWZ1eBybt5aIopjO8RPrmK78";
-            var gifURL = "https://api.giphy.com/v1/gifs/search?q=" + animalQuery + "&api_key=" + apiKey +"&limit=10";
+            var gifURL = "https://api.giphy.com/v1/gifs/search?q=" + animalQuery + "&api_key=" + apiKey +"&limit=12";
 
             $.ajax({
                 url: gifURL,
                 method: "GET"
             }).done(function(response){
                 for (let i = 0; i < response.data.length; i++) {
+                    //Create the still image of the animal
+                    var animalImageStill = response.data[i].images.fixed_width_still.url;
+                    //Create the animated image of the animal
                     var animalImage = response.data[i].images.original.url;
-                    var imageTag = $("<img width='400' height='250'>");
-                    imageTag.attr("src", animalImage).attr("alt", animalQuery);
-                    //imageTag.attr("src", animalImage);
-                    $("#animals").append(`<span>Rating: ${response.data[i].rating.toUpperCase()}</span>`);
-                    //$("#animals").append(`<div class="col-md-6">${imageTag}</div>`);
-                    $("#animals").append(imageTag);
-
-                    
+                    //Create an ImageTag
+                    var imageTag = $("<img  width='300' height='180' class='gif img-responsive thumbnail'>");
+                    //Add all the needed attributes. Theses will be used to animate the image
+                    imageTag.attr("src", animalImageStill).attr("alt", animalQuery).attr("data-still", animalImageStill).attr("data-animate", animalImage).attr("data-state", "still");
+                    //Create a centered div that will take all the images in a bootstrap frame
+                    var imgDiv = $('<center><div class="col-md-5 imgDiv">');
+                    //Append a paragraph with Rating
+                    imgDiv.append('<p class="rating text-center"> Rating: ' + response.data[i].rating.toUpperCase() +'</p>');
+                    //Append the ImageTag into the div
+                    imgDiv.append(imageTag);
+                    //Append the div witht he image to the #animals div
+                    $("#animals").append(imgDiv).append("<hr>");
                 }
             });
         }
@@ -103,15 +110,23 @@ $(document).ready(() => {
         gbmGifs.showGifs();        
     });
 
-    // Why isn't this code working??
+    //Animate Gif on click
 
-    // $(".animal-name").on("click", function () {
-    //     //First, we empty all other animals
-    //     $("#animals").empty();
-    //     //Get the animalName being searched:        
-    //     animalQuery = $(this).attr("data");
-    //     //Then call the showGifs() method
-    //     gbmGifs.showGifs();
-    // });
+    $(document).on("click", ".gif", function () {
+        // Let's get the state of the clicked gif: the state was added on the fly
+        var state = $(this).attr("data-state");
+        console.log("cliked images");
+        //If the state is equal to 'still':
+        if (state === "still") {
+            //Change the image source and use the link in the data-animate attribute.
+            $(this).attr("src", $(this).attr("data-animate"));
+            //Then change the 'data-state' to animate
+            $(this).attr("data-state", "animate");
+        //Else, reverse back to the original
+        } else {
+            $(this).attr("src", $(this).attr("data-still"));
+            $(this).attr("data-state", "still");
+        }
+    });
 
 });
