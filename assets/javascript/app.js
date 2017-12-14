@@ -99,6 +99,15 @@ $(document).ready(() => {
 
     });
 
+    //When a user presses ENTER, click the Add-Animal-Button
+    $("#add-animal").keyup(function (e) {
+        //check to see if the enter key was pressed
+        if (e.which === 13) {
+            //if so, run the addTask function
+            $(".add-animal-button").click();
+        }
+    });
+
     //When I click on Animal name button:    
     //This piece is not working with the usual jQuery Click $(".animal-name").on("click", function () {});
     $(document).on("click", ".animal-name", function () {
