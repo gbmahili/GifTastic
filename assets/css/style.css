@@ -17,6 +17,11 @@
   background: #3D9970;
   cursor: pointer;
 }
+.clear-animal-button{
+    cursor: pointer;
+    border-radius: 3px;
+    padding: .5em 1em;
+}
 
 .animal-name:hover{
     box-shadow: 0px 0px 0px 2px white, 0px 0px 0px 4px #3D9970;
